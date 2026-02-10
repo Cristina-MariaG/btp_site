@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 234 179 8; /* eab308 */
+    --color-primary-dark: 202 138 4; /* ca8a04 */
+    --color-dark: 26 26 26;
+    --color-dark-light: 45 45 45;
+  }
+
+  * {
+    @apply border-gray-200;
+  }
+
+  body {
+    @apply bg-white text-gray-900 antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center;
+  }
+
+  .btn-primary {
+    @apply bg-black text-white hover:bg-gray-800 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-primary-500 text-black hover:bg-primary-600 active:scale-95;
+  }
+
+  .btn-outline {
+    @apply border-2 border-black text-black hover:bg-black hover:text-white;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-display font-bold mb-6;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-soft p-6 transition-all duration-300 hover:shadow-xl;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-primary-500 focus:outline-none transition-colors duration-200;
+  }
+
+  .textarea-field {
+    @apply w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-primary-500 focus:outline-none transition-colors duration-200 resize-none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Animations personnalisées */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+/* Smooth scroll offset pour le header fixe */
+:target {
+  scroll-margin-top: 80px;
+}
