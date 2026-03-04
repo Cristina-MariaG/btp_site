@@ -235,7 +235,7 @@ const projects = [
     description: 'Rénovation complète avec îlot central',
     category: 'Cuisine',
     duration: '3 semaines',
-    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800'
+    image: 'https://plus.unsplash.com/premium_photo-1671269942050-df7e96b3e4ac?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=800'
   },
   {
     title: 'Salle de bain zen',
@@ -256,28 +256,28 @@ const projects = [
     description: 'Rénovation totale 3 pièces',
     category: 'Rénovation complète',
     duration: '6 semaines',
-    image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800'
+    image: 'https://images.unsplash.com/photo-1515263487990-61b07816b324?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=800'
   },
   {
     title: 'Cuisine ouverte',
     description: 'Ouverture sur salon et aménagement',
     category: 'Cuisine',
     duration: '4 semaines',
-    image: 'https://images.unsplash.com/photo-1556909114-44e3e92c49b5?w=800'
+    image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=800'
   },
   {
     title: 'Salle de bain familiale',
     description: 'Baignoire et meuble sur mesure',
     category: 'Salle de bain',
     duration: '2 semaines',
-    image: 'https://images.unsplash.com/photo-1600210491369-e753d80a41f3?w=800'
+    image: 'https://images.unsplash.com/photo-1631889993959-41b4e9c6e3c5?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=800'
   },
   {
     title: 'Chambre parentale',
     description: 'Peinture, dressing et parquet',
     category: 'Aménagement',
     duration: '1 semaine',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800'
+    image: 'https://images.unsplash.com/photo-1595526051245-4506e0005bd0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=800'
   },
   {
     title: 'Studio rénové',
@@ -287,11 +287,11 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800'
   },
   {
-    title: 'Cuisine contemporaine',
+    title: 'Cuisine',
     description: 'Design épuré et fonctionnel',
     category: 'Cuisine',
     duration: '3 semaines',
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800'
+    image: 'https://plus.unsplash.com/premium_photo-1676321688609-bb955a90c8c5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=800'
   }
 ]
 

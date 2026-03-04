@@ -25,6 +25,15 @@ npm run build
 # Preview du build
 npm run preview
 ```
+# Docker
+
+
+docker compose up 
+docker compose up --build
+
+docker compose down 
+
+docker-compose -f docker-compose.prod.yml up --build 
 
 ## 🎨 Structure du projet
 
@@ -105,11 +114,4 @@ npm run build
 # Upload le dossier dist/ vers S3 + CloudFront
 ```
 
-### Autres options
-- Netlify
-- Vercel
-- GitHub Pages
-
-## 📞 Contact
-
-Pour toute question : prorenovation@gmail.com
+Pour toute question : arcusi_cristina@yahoo.com

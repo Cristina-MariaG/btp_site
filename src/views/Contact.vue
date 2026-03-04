@@ -19,7 +19,7 @@
         <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <!-- Téléphone -->
           <a 
-            href="tel:0749908401" 
+            href="tel:07" 
             class="card text-center hover:shadow-2xl hover:border-primary-500 border-2 border-transparent transition-all duration-300 group"
           >
             <div class="w-20 h-20 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-500 group-hover:scale-110 transition-all duration-300">
@@ -29,7 +29,7 @@
             </div>
             <h3 class="text-2xl font-bold mb-2">Par téléphone</h3>
             <p class="text-gray-600 mb-4">Appelez-nous directement pour un échange rapide et personnalisé</p>
-            <p class="text-2xl font-bold text-primary-600 group-hover:text-primary-700">07 49 90 84 01</p>
+            <p class="text-2xl font-bold text-primary-600 group-hover:text-primary-700">07 </p>
           </a>
 
           <!-- Email -->

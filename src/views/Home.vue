@@ -80,7 +80,7 @@
           <!-- Texte -->
           <div class="col-span-2 space-y-2 order-2 md:order-1 ps-10">
             <!-- <h2 class="section-title text-3xl md:text-4xl font-bold"> -->
-                  <h2 class="section-title text-center mb-12">
+            <h2 class="section-title text-center mb-12">
               Redonnez <span class="text-primary-500">vie</span> à votre maison.
             </h2>
             <p class="text-lg text-gray-600 leading-relaxed">
@@ -95,7 +95,7 @@
               durable.
             </p>
             <div
-              class="bg-primary-50 border-l-4 border-primary-500 p-6 py-20  mt-10 rounded-r-lg"
+              class="bg-primary-50 border-l-4 border-primary-500 p-6 py-20 mt-10 rounded-r-lg"
             >
               <p class="text-gray-800 font-medium">
                 Peinture intérieure et extérieure, plâtrerie, parquet,
@@ -108,7 +108,6 @@
 
           <!-- Image -->
           <div class="col-span-1 flex justify-center order-1 md:order-2">
- 
             <div>
               <img
                 src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800"
@@ -143,11 +142,11 @@
     <!-- Section À propos -->
     <section class="py-10 bg-gray-50">
       <div class="container mx-auto px-4 col-span-2 flex justify-center">
-                   <img
-              src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800"
-              alt="Rénovation intérieure"
-              class="rounded-2xl shadow-2xl w-15 md:w-60 h-auto pe-2"
-            />
+        <img
+          src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800"
+          alt="Rénovation intérieure"
+          class="rounded-2xl shadow-2xl w-15 md:w-60 h-auto pe-2"
+        />
         <div class="max-w-4xl mx-auto">
           <h2 class="section-title text-center mb-12">
             A propos de <span class="text-primary-500">nous</span>
@@ -200,7 +199,7 @@
           <div class="card group hover:-translate-y-2">
             <div class="overflow-hidden rounded-lg mb-4">
               <img
-                src="https://images.unsplash.com/photo-1556909114-44e3e92c49b5?w=600"
+                src="https://images.unsplash.com/photo-1617228069096-4638a7ffc906?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=600"
                 alt="Cuisine"
                 class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -483,10 +482,11 @@
             class="relative group overflow-hidden rounded-xl aspect-square bg-gray-200"
           >
             <img
-              :src="`https://images.unsplash.com/photo-${['1600585154340-be6161a56a0c', '1600210492486-724fe5c67fb0', '1600566753086-00f18fb6b3ea', '1600607687920-4e2a09cf159d', '1600607687939-ce8a6c25118c', '1600566753190-a2c1d9e969f0'][i - 1]}?w=600`"
+              :src="`https://images.unsplash.com/photo-${['1600585154340-be6161a56a0c', '1600210492486-724fe5c67fb0', '1600566753086-00f18fb6b3ea', '1600607687920-4e2a09cf159d', '1600607687939-ce8a6c25118c', '1632829882891-5047ccc421bc?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'][i - 1]}?w=600`"
               alt="Réalisation"
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
+
             <div
               class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"
             >
