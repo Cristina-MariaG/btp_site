@@ -49,6 +49,7 @@ resource "aws_security_group" "ec2_sg" {
   # SSH — port 22
   # Allows remote access to the instance via SSH.
   # WARNING: restrict cidr_blocks to a specific IP in production environments.
+  ### Dont forget to change to your ip only in prod (security groups inbound rules)
   ingress {
     description = "SSH"
     from_port   = 22
@@ -116,14 +117,14 @@ resource "aws_instance" "btp_app_instance" {
 
   # Bootstrapping script executed once on first instance startup.
   # Installs Docker and Docker Compose without requiring manual intervention.
-  user_data = <<-EOF
-    #!/bin/bash
-    apt-get update -y
-    apt-get install -y docker.io docker-compose
-    systemctl start docker
-    systemctl enable docker
-    usermod -aG docker ubuntu
-  EOF
+ # user_data = <<-EOF
+ #   #!/bin/bash
+ #   apt-get update -y
+ #   apt-get install -y docker.io docker-compose
+ #   systemctl start docker
+ #   systemctl enable docker
+ #   usermod -aG docker ubuntu
+ # EOF
 
   tags = {
     Name        = var.instance_name
@@ -139,7 +140,7 @@ resource "aws_instance" "btp_app_instance" {
 # which would break DNS records and any dependent configuration.
 # ============================================================
 resource "aws_eip" "my_eip" {
-  instance = aws_instance.my_instance.id
+  instance = aws_instance.btp_app_instance.id
   domain   = "vpc"
 
   tags = {

@@ -19,7 +19,7 @@ variable "ami_id" {
 variable "public_key_path" {
   description = "Chemin vers la clé publique SSH sur ma machine"
   type        = string
-  default     = "~/.ssh/my_btp_app_key.pub"
+  default     = "/home/arcus/.ssh/btp_app_key.pub"
 }
 
 variable "instance_name" {
