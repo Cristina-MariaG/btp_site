@@ -1,0 +1,6 @@
+# Copie ce fichier en terraform.tfvars et adapte les valeurs
+# Ne commite JAMAIS terraform.tfvars si il contient des secrets
+
+aws_region      = "eu-west-3"
+instance_name   = "btp_app_prod"
+public_key_path = "~/.ssh/btp_app_key.pub"
