@@ -8,7 +8,7 @@ promtool
 .env.production
 .env.local
 .env.instance
-
+.env.for_scripts
 inventory.ini
 
 *.ini
