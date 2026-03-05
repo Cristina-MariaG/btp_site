@@ -1,3 +1,4 @@
+
 # ============================================================
 # VARIABLES
 # Centralise les valeurs configurables pour ne pas les
@@ -16,10 +17,10 @@ variable "ami_id" {
   default     = "ami-08461dc8cd9e834e0"  # Ubuntu 22.04 LTS - Paris
 }
 
-variable "public_key_path" {
-  description = "Chemin vers la clé publique SSH sur ma machine"
+variable "key_name" {
+  description = "Nom de la key pair AWS et du fichier .pem généré dans ~/.ssh/"
   type        = string
-  default     = "/home/arcus/.ssh/btp_app_key.pub"
+  default     = "btp_app_key"
 }
 
 variable "instance_name" {

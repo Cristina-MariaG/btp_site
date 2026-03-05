@@ -3,4 +3,4 @@
 
 aws_region      = "eu-west-3"
 instance_name   = "btp_app_prod"
-public_key_path = "/home/arcus/.ssh/btp_app_key.pub"
+key_name = "btp_app_key"

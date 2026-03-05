@@ -9,6 +9,14 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.0"
+    }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "~> 4.0"
+    }
   }
   required_version = ">= 1.2.0"
 }
@@ -25,14 +33,39 @@ provider "aws" {
 
 
 # ============================================================
+# TLS PRIVATE KEY
+# Generates a RSA private key locally.
+# Terraform will use it to create the AWS key pair and save
+# the private key as a .pem file on the local filesystem.
+# ============================================================
+resource "tls_private_key" "btp_app_key" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+
+# ============================================================
 # SSH KEY PAIR
-# Registers the local public key on AWS.
-# The corresponding private key must be kept secure locally
-# and will be used to authenticate SSH connections.
+# Registers the generated public key on AWS.
+# AWS will embed this public key in the EC2 instance at launch,
+# allowing SSH access with the matching .pem private key.
 # ============================================================
 resource "aws_key_pair" "btp_app_key" {
-  key_name   = "btp_app_key"
-  public_key = file(var.public_key_path)  # reads the public key from the local filesystem
+  key_name   = var.key_name
+  public_key = tls_private_key.btp_app_key.public_key_openssh
+}
+
+
+# ============================================================
+# SAVE PEM FILE LOCALLY
+# Writes the private key to disk as a .pem file.
+# This file is used to SSH into the instance.
+# It is saved to ~/.ssh/ and permissions are set to 400.
+# ============================================================
+resource "local_sensitive_file" "btp_app_key_pem" {
+  content         = tls_private_key.btp_app_key.private_key_pem
+  filename        = "/home/arcus/.ssh/${var.key_name}.pem"
+  file_permission = "0400"  # read-only for owner — required by SSH
 }
 
 
