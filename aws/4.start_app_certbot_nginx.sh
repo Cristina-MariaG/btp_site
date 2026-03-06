@@ -1,33 +1,34 @@
 #!/bin/bash
 
-# Script de déploiement corrigé
-# Tous les problèmes ont été résolés
+# Deployment script for btp.iamcristinadev.xyz
+# Separate EC2 instance from portfolio
 
-set -e  # Arrêter en cas d'erreur
+set -e
 
 # ==============================
 # VARIABLES DE CONFIGURATION
 # ==============================
-AWS_USER="ubuntu"                          # ✅ CORRIGÉ : ubuntu, pas admin
-AWS_HOST=$INSTANCE_IP
+AWS_USER="ubuntu"
+AWS_HOST=$(terraform -chdir=./terraform output -raw elastic_ip)                        # récupéré depuis terraform output
 SSH_KEY="~/.ssh/btp_app_key"
 DOCKER_COMPOSE_FILE="../docker-compose.prod.yml"
-REMOTE_DIR="/home/ubuntu/"        # ✅ CORRIGÉ : /home/ubuntu/portfolio
+REMOTE_DIR="/home/ubuntu/"
 EMAIL_ADDRESS="arcusi.cristina95@gmail.com"
+DOMAIN="btp.iamcristinadev.xyz"
 
-# Vérifier que les fichiers existent
-if [ ! -f ".env.production" ]; then
-    echo "❌ ERREUR: Le fichier .env.production n'existe pas!"
-    exit 1
-fi
+# # Vérifier que les fichiers existent
+# if [ ! -f ".env.production" ]; then
+#     echo "❌ ERREUR: Le fichier .env.production n'existe pas!"
+#     exit 1
+# fi
 
 if [ ! -f "$DOCKER_COMPOSE_FILE" ]; then
-    echo "❌ ERREUR: Le fichier docker-compose.yml n'existe pas!"
+    echo "❌ ERREUR: Le fichier docker-compose.prod.yml n'existe pas!"
     exit 1
 fi
 
 echo "=========================================="
-echo "🚀 DÉPLOIEMENT DU PORTFOLIO"
+echo "🚀 DÉPLOIEMENT BTP — $DOMAIN"
 echo "=========================================="
 echo ""
 
@@ -48,28 +49,25 @@ EOF
 echo ""
 echo "📤 Copie des fichiers sur le serveur..."
 
-# docker-compose.yml
 scp -i $SSH_KEY $DOCKER_COMPOSE_FILE $AWS_USER@$AWS_HOST:$REMOTE_DIR/docker-compose.yml
 echo "✓ docker-compose.yml copié"
 
-# .env.production (AVEC le point au début)
-scp -i $SSH_KEY ./.env.production $AWS_USER@$AWS_HOST:$REMOTE_DIR/.env.production
-echo "✓ .env.production copié"
+# scp -i $SSH_KEY ./.env.production $AWS_USER@$AWS_HOST:$REMOTE_DIR/.env.production
+# echo "✓ .env.production copié"
 
-# Configuration nginx pré-SSL
-scp -i $SSH_KEY ./www.iamcristinadev.xyz1.conf $AWS_USER@$AWS_HOST:$REMOTE_DIR/nginx/conf/www.iamcristinadev.conf
+scp -i $SSH_KEY ./nginx_config/btp_iamcristinadev_xyz1.conf $AWS_USER@$AWS_HOST:$REMOTE_DIR/nginx/conf/btp.iamcristinadev.conf
 echo "✓ Configuration nginx (pré-SSL) copiée"
 
 # ==============================
 # ÉTAPE 3 : Sécuriser .env
 # ==============================
-echo ""
-echo "🔒 Sécurisation du fichier .env..."
-ssh -i $SSH_KEY $AWS_USER@$AWS_HOST << EOF
-    chmod 600 $REMOTE_DIR/.env.production
-    chown ubuntu:ubuntu $REMOTE_DIR/.env.production
-    echo "✓ Permissions 600 appliquées"
-EOF
+# echo ""
+# echo "🔒 Sécurisation du fichier .env..."
+# ssh -i $SSH_KEY $AWS_USER@$AWS_HOST << EOF
+#     chmod 600 $REMOTE_DIR/.env.production
+#     chown ubuntu:ubuntu $REMOTE_DIR/.env.production
+#     echo "✓ Permissions 600 appliquées"
+# EOF
 
 # ==============================
 # ÉTAPE 4 : Démarrer Docker
@@ -82,7 +80,6 @@ ssh -i $SSH_KEY $AWS_USER@$AWS_HOST << EOF
     echo "✓ Docker Compose démarré"
 EOF
 
-# Attendre que les services démarrent
 echo "⏳ Attente du démarrage complet..."
 sleep 10
 
@@ -96,8 +93,7 @@ ssh -i $SSH_KEY $AWS_USER@$AWS_HOST << EOF
     docker compose run --rm certbot certonly \
         --webroot \
         --webroot-path /var/www/certbot/ \
-        -d iamcristinadev.xyz \
-        -d www.iamcristinadev.xyz \
+        -d $DOMAIN \
         --email $EMAIL_ADDRESS \
         --agree-tos \
         --non-interactive
@@ -109,20 +105,11 @@ EOF
 # ==============================
 echo ""
 echo "📝 Mise à jour de la configuration nginx avec SSL..."
-scp -i $SSH_KEY ./www.iamcristinadev.xyz2.conf $AWS_USER@$AWS_HOST:$REMOTE_DIR/nginx/conf/www.iamcristinadev.conf
+scp -i $SSH_KEY ./nginx_config/btp_iamcristinadev_xyz2.conf $AWS_USER@$AWS_HOST:$REMOTE_DIR/nginx/conf/btp.iamcristinadev.conf
 echo "✓ Configuration nginx (avec SSL) copiée"
 
 # ==============================
-# ÉTAPE 7 : Script de renouvellement
-# ==============================
-echo ""
-echo "📜 Copie du script de renouvellement SSL..."
-scp -i $SSH_KEY ./renew_certif.sh $AWS_USER@$AWS_HOST:$REMOTE_DIR/renew_certif.sh
-ssh -i $SSH_KEY $AWS_USER@$AWS_HOST "chmod +x $REMOTE_DIR/renew_certif.sh"
-echo "✓ Script de renouvellement copié"
-
-# ==============================
-# ÉTAPE 8 : Redémarrer Docker
+# ÉTAPE 7 :  Redémarrer Docker
 # ==============================
 echo ""
 echo "🔄 Redémarrage de Docker avec la nouvelle configuration..."
@@ -131,6 +118,15 @@ ssh -i $SSH_KEY $AWS_USER@$AWS_HOST << EOF
     docker compose restart
     echo "✓ Docker redémarré"
 EOF
+# ==============================
+# ÉTAPE 8 :   Script de renouvellement
+# ==============================
+
+echo ""
+echo "📜 Copie du script de renouvellement SSL..."
+scp -i $SSH_KEY ./renew_certif.sh $AWS_USER@$AWS_HOST:$REMOTE_DIR/renew_certif.sh
+ssh -i $SSH_KEY $AWS_USER@$AWS_HOST "chmod +x $REMOTE_DIR/renew_certif.sh"
+echo "✓ Script de renouvellement copié"
 
 # ==============================
 # ÉTAPE 9 : Configurer Cron
@@ -145,7 +141,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
         sudo apt-get install -y cron
         sudo systemctl enable cron
         sudo systemctl start cron
-        (crontab -l 2>/dev/null | grep -v "renew_certif.sh"; echo "0 0 1 */3 * /home/ubuntu/portfolio/renew_certif.sh >> /home/ubuntu/portfolio/ssl_renew.log 2>&1") | crontab -
+        (crontab -l 2>/dev/null | grep -v "renew_certif.sh"; echo "0 0 1 */3 * /home/ubuntu/renew_certif.sh >> /home/ubuntu/ssl_renew.log 2>&1") | crontab -
         echo "✓ Cron configuré (renouvellement tous les 3 mois)"
 EOF
 fi
@@ -159,8 +155,7 @@ echo "✅ DÉPLOIEMENT TERMINÉ AVEC SUCCÈS"
 echo "=========================================="
 echo ""
 echo "🌐 Votre site est disponible sur :"
-echo "   https://iamcristinadev.xyz"
-echo "   https://www.iamcristinadev.xyz"
+echo "   https://$DOMAIN"
 echo ""
 echo "📊 État des conteneurs :"
 ssh -i $SSH_KEY $AWS_USER@$AWS_HOST "cd $REMOTE_DIR && docker compose ps"
@@ -168,12 +163,3 @@ echo ""
 echo "🔧 Commandes utiles :"
 echo "   Voir les logs : ssh -i $SSH_KEY $AWS_USER@$AWS_HOST 'cd $REMOTE_DIR && docker compose logs -f'"
 echo "   Redémarrer   : ssh -i $SSH_KEY $AWS_USER@$AWS_HOST 'cd $REMOTE_DIR && docker compose restart'"
-echo ""
-
-
-
-
-
-
-
-
