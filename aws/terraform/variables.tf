@@ -14,11 +14,11 @@ variable "aws_region" {
 variable "ami_id" {
   description = "ID de l'AMI (image système). Ubuntu 22.04 LTS sur eu-west-3"
   type        = string
-  default     = "ami-08461dc8cd9e834e0"  # Ubuntu 22.04 LTS - Paris
+  default     = "ami-0f3f2cef1fc7d0edb"  # Ubuntu 22.04 LTS - Paris
 }
 
 variable "key_name" {
-  description = "Nom de la key pair AWS et du fichier .pem généré dans ~/.ssh/"
+  description = "Nom de la key pair AWS "
   type        = string
   default     = "btp_app_key"
 }

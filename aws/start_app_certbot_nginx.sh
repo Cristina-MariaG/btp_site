@@ -10,8 +10,8 @@ set -e  # Arrêter en cas d'erreur
 # ==============================
 AWS_USER="ubuntu"                          # ✅ CORRIGÉ : ubuntu, pas admin
 AWS_HOST=$INSTANCE_IP
-SSH_KEY="~/.ssh/my-portfolio.pem"
-DOCKER_COMPOSE_FILE="./docker-compose.yml"
+SSH_KEY="~/.ssh/btp_app_key"
+DOCKER_COMPOSE_FILE="../docker-compose.prod.yml"
 REMOTE_DIR="/home/ubuntu/"        # ✅ CORRIGÉ : /home/ubuntu/portfolio
 EMAIL_ADDRESS="arcusi.cristina95@gmail.com"
 

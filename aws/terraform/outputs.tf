@@ -17,3 +17,4 @@ output "ssh_command" {
   description = "Commande SSH pour se connecter"
   value       = "ssh -i /home/arcus/.ssh/btp_app_key ubuntu@${aws_eip.my_eip.public_ip}"
 }
+

@@ -133,3 +133,10 @@
       debug:
         msg: "{{ test_result.stdout_lines }}"
       when: test_result is succeeded
+      
+    - name: Supprimer l'image hello-world après le test
+      docker_image:
+        name: hello-world
+        state: absent
+        force_absent: yes
+      when: test_result is succeeded
