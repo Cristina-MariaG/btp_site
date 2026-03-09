@@ -36,7 +36,7 @@ echo ""
 # ÉTAPE 1 : Créer les dossiers
 # ==============================
 echo "📁 Création des dossiers sur le serveur..."
-ssh -i $SSH_KEY $AWS_USER@$AWS_HOST << 'EOF'
+ssh -i $SSH_KEY -p 2222 $AWS_USER@$AWS_HOST << 'EOF'
     mkdir -p /home/ubuntu/nginx/conf
     mkdir -p /home/ubuntu/certbot/www
     mkdir -p /home/ubuntu/certbot/conf
@@ -49,13 +49,13 @@ EOF
 echo ""
 echo "📤 Copie des fichiers sur le serveur..."
 
-scp -i $SSH_KEY $DOCKER_COMPOSE_FILE $AWS_USER@$AWS_HOST:$REMOTE_DIR/docker-compose.yml
+scp -i $SSH_KEY -P 2222  $DOCKER_COMPOSE_FILE $AWS_USER@$AWS_HOST:$REMOTE_DIR/docker-compose.yml
 echo "✓ docker-compose.yml copié"
 
 # scp -i $SSH_KEY ./.env.production $AWS_USER@$AWS_HOST:$REMOTE_DIR/.env.production
 # echo "✓ .env.production copié"
 
-scp -i $SSH_KEY ./nginx_config/btp_iamcristinadev_xyz1.conf $AWS_USER@$AWS_HOST:$REMOTE_DIR/nginx/conf/btp.iamcristinadev.conf
+scp -i $SSH_KEY -P 2222 ./nginx_config/btp_iamcristinadev_xyz1.conf $AWS_USER@$AWS_HOST:$REMOTE_DIR/nginx/conf/btp.iamcristinadev.conf
 echo "✓ Configuration nginx (pré-SSL) copiée"
 
 # ==============================
@@ -74,21 +74,21 @@ echo "✓ Configuration nginx (pré-SSL) copiée"
 # ==============================
 echo ""
 echo "🐋 Démarrage de Docker Compose..."
-ssh -i $SSH_KEY $AWS_USER@$AWS_HOST << EOF
+ssh -i $SSH_KEY -p 2222 $AWS_USER@$AWS_HOST << EOF
     cd $REMOTE_DIR
     docker compose up -d
     echo "✓ Docker Compose démarré"
 EOF
 
 echo "⏳ Attente du démarrage complet..."
-sleep 10
+sleep 60
 
 # ==============================
 # ÉTAPE 5 : Générer SSL
 # ==============================
 echo ""
 echo "🔐 Génération du certificat SSL..."
-ssh -i $SSH_KEY $AWS_USER@$AWS_HOST << EOF
+ssh -i $SSH_KEY -p 2222 $AWS_USER@$AWS_HOST << EOF
     cd $REMOTE_DIR
     docker compose run --rm certbot certonly \
         --webroot \
@@ -103,9 +103,10 @@ EOF
 # ==============================
 # ÉTAPE 6 : Config nginx avec SSL
 # ==============================
-echo ""
+sleep 20
+
 echo "📝 Mise à jour de la configuration nginx avec SSL..."
-scp -i $SSH_KEY ./nginx_config/btp_iamcristinadev_xyz2.conf $AWS_USER@$AyWS_HOST:$REMOTE_DIR/nginx/conf/btp.iamcristinadev.conf
+scp -i $SSH_KEY -P 2222 ./nginx_config/btp_iamcristinadev_xyz2.conf $AWS_USER@$AWS_HOST:$REMOTE_DIR/nginx/conf/btp.iamcristinadev.conf
 echo "✓ Configuration nginx (avec SSL) copiée"
 
 # ==============================
@@ -113,7 +114,7 @@ echo "✓ Configuration nginx (avec SSL) copiée"
 # ==============================
 echo ""
 echo "🔄 Redémarrage de Docker avec la nouvelle configuration..."
-ssh -i $SSH_KEY $AWS_USER@$AWS_HOST << EOF
+ssh -i $SSH_KEY -p 2222 $AWS_USER@$AWS_HOST << EOF
     cd $REMOTE_DIR
     docker compose restart
     echo "✓ Docker redémarré"
@@ -124,8 +125,8 @@ EOF
 
 echo ""
 echo "📜 Copie du script de renouvellement SSL..."
-scp -i $SSH_KEY ./renew_certif.sh $AWS_USER@$AWS_HOST:$REMOTE_DIR/renew_certif.sh
-ssh -i $SSH_KEY $AWS_USER@$AWS_HOST "chmod +x $REMOTE_DIR/renew_certif.sh"
+scp -i $SSH_KEY -P 2222 ./renew_certif.sh $AWS_USER@$AWS_HOST:$REMOTE_DIR/renew_certif.sh
+ssh -i $SSH_KEY -p 2222 $AWS_USER@$AWS_HOST "chmod +x $REMOTE_DIR/renew_certif.sh"
 echo "✓ Script de renouvellement copié"
 
 # ==============================
@@ -136,7 +137,7 @@ read -p "Configurer le renouvellement automatique SSL (cron) ? (y/n) " -n 1 -r
 echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "⏰ Configuration du cron..."
-    ssh -i $SSH_KEY $AWS_USER@$AWS_HOST << 'EOF'
+    ssh -i $SSH_KEY -p 2222 $AWS_USER@$AWS_HOST << 'EOF'
         sudo apt-get update -qq
         sudo apt-get install -y cron
         sudo systemctl enable cron
@@ -158,7 +159,7 @@ echo "🌐 Votre site est disponible sur :"
 echo "   https://$DOMAIN"
 echo ""
 echo "📊 État des conteneurs :"
-ssh -i $SSH_KEY $AWS_USER@$AWS_HOST "cd $REMOTE_DIR && docker compose ps"
+ssh -i $SSH_KEY -p 2222 $AWS_USER@$AWS_HOST "cd $REMOTE_DIR && docker compose ps"
 echo ""
 echo "🔧 Commandes utiles :"
 echo "   Voir les logs : ssh -i $SSH_KEY $AWS_USER@$AWS_HOST 'cd $REMOTE_DIR && docker compose logs -f'"

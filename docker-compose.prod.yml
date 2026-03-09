@@ -1,6 +1,12 @@
 services:
   webserver:
     image: nginx:latest
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
     ports:
       - '80:80'
       - '443:443'
@@ -23,6 +29,12 @@ services:
 
   certbot:
     image: certbot/certbot:latest
+    command: certonly --webroot --webroot-path /var/www/certbot/
+            -d btp.iamcristinadev.xyz
+            --email arcusi.cristina95@gmail.com
+            --agree-tos
+            --non-interactive
+            --keep-until-expiring
     logging:
       driver: 'json-file'
       options:
