@@ -1,1 +1,0 @@
-https://batirenov94.fr/?gad_source=1&gad_campaignid=19748759273&gbraid=0AAAAApP3SwuMdS1TbeeoOUMurmo9Lf3PI&gclid=CjwKCAiA7LzLBhAgEiwAjMWzCO8_Lh8dwNCaKX-B9lrFnWZD0hgfZCOvjsxcZn8Y5ACFFMsb6cqcWBoCjC8QAvD_BwE
