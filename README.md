@@ -1,6 +1,3 @@
-# 🏗️ BTP Showcase Website — Pro Rénovation
-
-> **Vue 3 · Docker · Terraform · Ansible · GitLab CI/CD · AWS EC2 · Nginx · SSL · Cloudflare · Fail2ban**
 
 # 🏗️ BTP Showcase Website — Pro Rénovation
 
