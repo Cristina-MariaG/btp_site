@@ -105,7 +105,7 @@ EOF
 # ==============================
 echo ""
 echo "📝 Mise à jour de la configuration nginx avec SSL..."
-scp -i $SSH_KEY ./nginx_config/btp_iamcristinadev_xyz2.conf $AWS_USER@$AWS_HOST:$REMOTE_DIR/nginx/conf/btp.iamcristinadev.conf
+scp -i $SSH_KEY ./nginx_config/btp_iamcristinadev_xyz2.conf $AWS_USER@$AyWS_HOST:$REMOTE_DIR/nginx/conf/btp.iamcristinadev.conf
 echo "✓ Configuration nginx (avec SSL) copiée"
 
 # ==============================

@@ -17,6 +17,27 @@ echo "=========================================="
 echo ""
 
 # ==============================
+# ÉTAPE 0 : Nettoyage des anciennes images
+# ==============================
+echo "🧹 Nettoyage des anciennes images..."
+
+# Supprime l'image locale si elle existe
+if docker image inspect "$IMAGE_NAME" &>/dev/null; then
+    docker rmi "$IMAGE_NAME" --force
+    echo "✓ Image locale supprimée : $IMAGE_NAME"
+fi
+
+if docker image inspect "$FULL_IMAGE" &>/dev/null; then
+    docker rmi "$FULL_IMAGE" --force
+    echo "✓ Image taguée supprimée : $FULL_IMAGE"
+fi
+
+# Supprime les images dangling (sans tag) pour libérer de l'espace
+docker image prune -f
+echo "✓ Images orphelines supprimées"
+echo ""
+
+# ==============================
 # ÉTAPE 1 : Login DockerHub
 # ==============================
 echo "🔐 Connexion à DockerHub..."
