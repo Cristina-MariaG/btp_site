@@ -24,7 +24,6 @@ Showcase website for a BTP renovation company. The project covers the full cycle
 ---
 ## 🎯 About this project
 
-This project was built as a showcase website for a BTP renovation company.
 Beyond the frontend, the main focus was building a **complete automated 
 deployment pipeline** — from a single command on a local machine to a 
 live, secured, SSL-enabled production site on AWS.
