@@ -1,0 +1,40 @@
+# ---- Stage 1 : Build ----
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+RUN npx vite build
+
+# ---- Stage 2 : Image légère avec serve ----
+FROM node:20-alpine
+
+RUN npm install -g serve
+
+COPY --from=builder /app/dist ./dist
+
+EXPOSE 3030
+
+CMD ["serve", "-s", "dist", "-l", "3030"]
+
+
+
+
+
+
+# FROM node:20-alpine
+
+# WORKDIR /app
+
+# COPY package*.json ./
+# RUN npm install
+
+# COPY . .
+# RUN npm run build
+
+# EXPOSE 30
+
+# CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0"]

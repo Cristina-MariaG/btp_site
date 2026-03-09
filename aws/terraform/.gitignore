@@ -1,0 +1,8 @@
+# Fichiers générés par Terraform
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+
+# Variables qui peuvent contenir des secrets
+terraform.tfvars
