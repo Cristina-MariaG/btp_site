@@ -21,6 +21,9 @@ fi
 echo "Initializing and applying Terraform..."
 cd ./terraform
 terraform init  # Initialize Terraform and download providers
+
+terraform plan 
+# terraform apply tfplan
 terraform apply -auto-approve  # Apply Terraform configuration without manual approval
 
 # At this point Terraform has:
