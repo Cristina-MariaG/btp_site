@@ -64,11 +64,10 @@ resource "aws_security_group" "ec2_sg" {
   # SSH — port 22
   ### Dont forget to change to your ip only in prod
   ingress {
-    description = "SSH"
-    from_port   = 22
-    to_port     = 22
+    from_port   = 2222
+    to_port     = 2222
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["37.65.59.156/32"]
   }
 
   # HTTP — port 80
@@ -88,6 +87,7 @@ resource "aws_security_group" "ec2_sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  
 
   # Application port — 3030
   # ingress {
