@@ -50,7 +50,7 @@ EOF
 # Indicate that the deployment is complete
 echo "Deployment completed successfully!"
 echo "Connect to your instance with:"
-echo "  ssh -i $PRIVATE_KEY ubuntu@${INSTANCE_IP}"
+echo "  ssh -i $PRIVATE_KEY -p 2222 ubuntu@${INSTANCE_IP}"
 
 
 
