@@ -22,7 +22,7 @@
             <div>
               <h2 class="text-4xl font-display font-bold mb-6">Notre histoire</h2>
               <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                Pro Renovation bénéficie d'une équipe possédant plus de <strong>20 ans d'expérience</strong> dans le domaine de la rénovation intérieure et extérieure.
+                Nova Construct General bénéficie d'une équipe possédant plus de <strong>20 ans d'expérience</strong> dans le domaine de la rénovation intérieure et extérieure.
               </p>
               <p class="text-lg text-gray-700 leading-relaxed mb-4">
                 Nous sommes spécialisés dans des travaux de qualité, réalisés avec soin et professionnalisme. Notre passion pour la rénovation et notre engagement envers l'excellence nous ont permis de construire une réputation solide auprès de nos clients.
@@ -31,7 +31,7 @@
             <div>
               <img 
                 src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800" 
-                alt="Équipe Pro Renovation" 
+                alt="Équipe Nova Construct General" 
                 class="rounded-2xl shadow-2xl"
               />
             </div>

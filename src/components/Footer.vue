@@ -5,10 +5,10 @@
         <!-- À propos -->
         <div>
           <div class="flex items-center space-x-2 mb-4">
-            <div class="w-10 h-10 bg-primary-500 rounded-lg flex items-center justify-center">
-              <span class="text-2xl font-bold text-black">P</span>
+            <div class="w-14 h-10 bg-primary-500 rounded-lg flex items-center justify-center">
+              <span class="text-lg font-bold text-black">NCG</span>
             </div>
-            <span class="text-xl font-bold">Pro Renovation</span>
+            <span class="text-xl font-bold">Nova Construct General</span>
           </div>
           <p class="text-gray-400 text-sm leading-relaxed">
             Sublimer votre maison avec professionnalisme et créativité.
@@ -122,7 +122,7 @@
       <div class="border-t border-gray-800 mt-10 pt-8">
         <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <p class="text-sm text-gray-400">
-            © {{ new Date().getFullYear() }} Pro Renovation. Tous droits réservés.
+            © {{ new Date().getFullYear() }} Nova Construct General. Tous droits réservés.
           </p>
           <div class="flex space-x-6 text-sm">
             <a href="#" class="text-gray-400 hover:text-primary-500 transition-colors duration-200">

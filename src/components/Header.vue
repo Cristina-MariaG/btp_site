@@ -7,10 +7,10 @@
       <div class="flex items-center justify-between">
         <!-- Logo -->
         <router-link to="/" class="flex items-center space-x-2">
-          <div class="w-10 h-10 bg-primary-500 rounded-lg flex items-center justify-center">
-            <span class="text-2xl font-bold text-black">P</span>
+          <div class="w-14 h-10 bg-primary-500 rounded-lg flex items-center justify-center">
+            <span class="text-lg font-bold text-black">NCG</span>
           </div>
-          <span class="text-xl font-bold text-black">Pro Renovation</span>
+          <span class="text-xl font-bold text-black">Nova Construct General</span>
         </router-link>
 
         <!-- Desktop Menu -->

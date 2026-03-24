@@ -25,7 +25,7 @@
           <h1
             class="text-5xl md:text-7xl font-display font-bold text-white leading-tight"
           >
-            Pro Renovation
+            Nova Construct General
           </h1>
           <p class="text-2xl md:text-3xl text-white/90 font-light">
             Rénovation intérieure & extérieure
@@ -89,7 +89,7 @@
               façade prisonnière...
             </p>
             <p class="text-lg text-gray-600 leading-relaxed">
-              Chez Pro Renovation, nous transformons votre intérieur comme votre
+              Chez Nova Construct General, nous transformons votre intérieur comme votre
               extérieur. Nos équipes maîtrisent plus de 20 métiers
               complémentaires pour un résultat harmonieux, professionnel et
               durable.
@@ -154,7 +154,7 @@
 
           <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
             <p>
-              Pro Renovation bénéficie d'une équipe possédant plus de 20 ans
+              Nova Construct General bénéficie d'une équipe possédant plus de 20 ans
               d'expérience dans le domaine de la rénovation intérieure et
               extérieure. Nous sommes spécialisés dans des travaux de qualité,
               réalisés avec soin et professionnalisme.

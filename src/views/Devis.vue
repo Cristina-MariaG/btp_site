@@ -310,7 +310,7 @@
                       class="mt-1 mr-3 w-5 h-5 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
                     />
                     <span class="text-sm text-gray-600">
-                      J'accepte que mes données personnelles soient utilisées pour traiter ma demande de devis et être recontacté par Pro Renovation. *
+                      J'accepte que mes données personnelles soient utilisées pour traiter ma demande de devis et être recontacté par Nova Construct General. *
                     </span>
                   </label>
                 </div>
