@@ -21,6 +21,10 @@ Showcase website for a BTP renovation company. The project covers the full cycle
 
 🌐 **[btp.iamcristinadev.xyz](https://btp.iamcristinadev.xyz)**
 
+Here is a screenshot of the live website's homepage:
+
+![Homepage screenshot](btp.iamcristinadev.xyz_.png)
+
 ---
 ## 🎯 About this project
 
